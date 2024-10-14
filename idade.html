@@ -87,10 +87,11 @@
           idade: idade,
           timestamp: new Date()
         }).then(() => {
-          // Redireciona para o Google após o envio
+          // Redireciona para o Google após o envio com sucesso
           window.location.href = 'https://www.google.com';
         }).catch((error) => {
           console.error('Erro ao salvar idade: ', error);
+          alert('Ocorreu um erro ao salvar sua idade. Por favor, tente novamente.');
         });
       } else {
         alert('Por favor, insira uma idade válida.');
