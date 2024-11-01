@@ -383,8 +383,31 @@
                                                         <div style="margin-top: -25px;" class="question" id="q1">
                                                             
 							    <p style="text-align: center; margin-top: -20px"><span style="font-size: 18pt; font-family: Poppins, sans-serif;">Click below to claim your reward!</span>
-                                                            <p><a href="https://gdmtrck.com/?a=204419&c=390568&co=258716&mt=26&s1=lulu-ca2"  class="cta_btn q2-btn" class="cta_btn q1-btn">Claim Now!</a>
-                                                            </p>
+                                                          <!-- Código do botão -->
+<p>
+  <a href="https://gdmtrck.com/?a=204419&c=390568&co=258716&mt=26&s1=lulu-ca2"
+     class="cta_btn q2-btn q1-btn"
+     id="ctaButton">Claim Now!</a>
+</p>
+
+<!-- Código JavaScript para rastrear o evento de clique -->
+<script>
+  // Aguarda o carregamento do DOM para configurar o listener de clique
+  document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona o botão pelo ID
+    var button = document.getElementById("ctaButton");
+
+    // Adiciona o evento de clique ao botão
+    button.addEventListener("click", function() {
+      // Dispara o evento de clique do TikTok Pixel
+      ttq.track('ClickButton', {
+        // Aqui, você pode adicionar dados adicionais, se necessário
+      });
+      console.log("Evento de clique registrado no TikTok Pixel.");
+    });
+  });
+</script>
+
                                                             
                                                             
                                                         </div>
