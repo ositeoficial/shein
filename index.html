@@ -9,7 +9,7 @@
     <h1>Welcome!</h1>
     <p>How can I help you?</p>
 </body>
-    <!-- Meta Pixel Code -->
+   <!-- Meta Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -43,6 +43,11 @@ src="https://www.facebook.com/tr?id=1247248706723644&ev=PageView&noscript=1"
     });
   }
 
+  // Evento de Lead
+  function trackLead() {
+    fbq('track', 'Lead');
+  }
+
   // Exemplo: Ativar o evento de visualização de conteúdo ao carregar a página
   window.onload = function() {
     trackViewContent();
@@ -50,6 +55,10 @@ src="https://www.facebook.com/tr?id=1247248706723644&ev=PageView&noscript=1"
 
   // Exemplo de chamada para registrar uma compra
   // trackPurchase(100.0, 'BRL'); // Exemplo: R$100,00 em BRL
+  
+  // Exemplo de chamada para registrar um lead
+  // trackLead();
 </script>
+
 
 </html>
