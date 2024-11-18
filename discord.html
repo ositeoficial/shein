@@ -22,15 +22,30 @@
 <body>
     <div class="widget">
         <h2 id="server-name">Loading...</h2>
-        <p id="member-count">Members: Loading...</p>
+        <p id="member-count">Members Online: Loading...</p>
     </div>
 
     <script>
         fetch("https://discord.com/api/guilds/1303156719710507109/widget.json")
             .then(response => response.json())
             .then(data => {
-                document.getElementById('server-name').textContent = data.name;
-                document.getElementById('member-count').textContent = `Members Online: ${data.presence_count}`;
+                // Verifica se os dados necessários existem
+                if (data.name) {
+                    document.getElementById('server-name').textContent = data.name;
+                } else {
+                    document.getElementById('server-name').textContent = "Server Name Not Available";
+                }
+
+                if (data.presence_count !== undefined) {
+                    document.getElementById('member-count').textContent = `Members Online: ${data.presence_count}`;
+                } else {
+                    document.getElementById('member-count').textContent = "Members Online: Not Available";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                document.getElementById('server-name').textContent = "Error loading server data";
+                document.getElementById('member-count').textContent = "";
             });
     </script>
 </body>
