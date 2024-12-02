@@ -575,37 +575,7 @@
         <!--]-->
         <!--]-->
     </div>
-<script>
-function redirectToAffiliateLink() {
-  try {
-    // Captura os parâmetros da URL atual (do cloaker)
-    const currentPageParams = new URLSearchParams(window.location.search);
-
-    // Extrai o valor do parâmetro `ad_name` (__CID_NAME__)
-    const adName = currentPageParams.get('ad_name');
-
-    // Define o URL base do seu link de afiliado
-    const affiliateBaseUrl = 'https://www.uplevelrewards.shop/amazon750.html';
-
-    // Constrói a URL final com o parâmetro `source`
-    const finalUrl = new URL(affiliateBaseUrl);
-    if (adName) {
-      finalUrl.searchParams.append('source', adName); // Adiciona o parâmetro `source` com o valor de `ad_name`
-    }
-
-    // Redireciona para a URL formatada
-    console.log("Redirecionando para:", finalUrl.toString()); // Log para depuração
-    window.location.href = finalUrl.toString();
-  } catch (error) {
-    console.error("Erro ao redirecionar:", error);
-  }
-}
-
-// Chamar a função no carregamento da página
-redirectToAffiliateLink();
-
-
-</script>
+   <script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script>
 	
 </body>
 
