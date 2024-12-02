@@ -575,8 +575,36 @@
         <!--]-->
         <!--]-->
     </div>
+<script>
+	function redirectToAffiliateLink() {
+  try {
+    // Captura os parâmetros da URL atual
+    const currentPageParams = new URLSearchParams(window.location.search);
 
+    // Extrai o valor do parâmetro `ad_name` (TikTok Ads)
+    const adName = currentPageParams.get('ad_name'); // Valor de __CID_NAME__
+
+    // Define o URL base do seu site com slug
+    const affiliateBaseUrl = 'https://uplevelrewards.shop/amazon750.html';
+
+    // Adiciona o parâmetro `source` ao seu link de afiliado
+    const finalUrl = new URL(affiliateBaseUrl);
+    if (adName) {
+      finalUrl.searchParams.append('source', adName);
+    }
+
+    // Redireciona para o URL final
+    window.location.href = finalUrl.toString();
+  } catch (error) {
+    console.error("Erro ao redirecionar:", error);
+  }
+}
+
+// Chamar a função no carregamento da página
+redirectToAffiliateLink();
+
+</script>
 	
 </body>
-<script>document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll("a").forEach((e=>{e.getAttribute("href")?.includes("#")||(e.getAttribute("href")?.includes("?")?e.setAttribute("href",e.getAttribute("href")+window.location.search.replace("?","&")):e.getAttribute("href")?e.setAttribute("href",e.getAttribute("href")+window.location.search):"")}))}));</script>	
+
 </html>
