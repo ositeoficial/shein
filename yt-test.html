@@ -83,22 +83,21 @@
       const overlay = document.getElementById('overlay');
       if (isPlaying) {
         player.pauseVideo();
-        overlay.classList.remove('hidden');
-        overlay.textContent = 'Clique para Reproduzir';
       } else {
         player.playVideo();
-        overlay.classList.add('hidden');
       }
     }
 
     function onPlayerStateChange(event) {
+      const overlay = document.getElementById('overlay');
+
       if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
-        document.getElementById('overlay').classList.add('hidden'); // Oculta overlay ao reproduzir
+        overlay.classList.add('hidden'); // Oculta overlay ao reproduzir
       } else if (event.data === YT.PlayerState.PAUSED) {
         isPlaying = false;
-        document.getElementById('overlay').classList.remove('hidden'); // Mostra overlay ao pausar
-        document.getElementById('overlay').textContent = 'Clique para Reproduzir'; // Exibe texto
+        overlay.classList.remove('hidden'); // Mostra overlay ao pausar
+        overlay.textContent = 'Clique para Reproduzir'; // Exibe texto
       }
     }
 
