@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Embed</title>
+  <title>Vídeo Embutido</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
       background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     .video-container {
       position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      width: 640px;
+      height: 360px;
+      background: black;
     }
     iframe {
       position: absolute;
@@ -22,30 +27,35 @@
       left: 0;
       width: 100%;
       height: 100%;
-      border: none;
+      pointer-events: none; /* Impede cliques no iframe */
     }
-    .description {
-      margin-top: 20px;
-      color: #333;
+    .play-pause {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 2;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="video-container">
-    <iframe 
-      id="youtube-video" 
-      src="https://www.youtube.com/embed/jpThCV6qak8?rel=0&modestbranding=1&controls=1&showinfo=0&enablejsapi=1" 
-      allow="autoplay; encrypted-media" 
+    <iframe
+      id="youtube-video"
+      src="https://www.youtube.com/embed/jpThCV6qak8?rel=0&modestbranding=1&controls=0&showinfo=0&disablekb=1&autoplay=0&fs=0&enablejsapi=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
+    <div class="play-pause" onclick="togglePlayPause()"></div>
   </div>
-  <p class="description">
-    Assista ao vídeo acima. Todos os dados de visualização serão contabilizados no YouTube Studio.
-  </p>
 
   <script>
-    // YouTube IFrame API
     let player;
+    let isPlaying = false;
+
+    // Inicializa a API do YouTube IFrame
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('youtube-video', {
         events: {
@@ -54,21 +64,29 @@
       });
     }
 
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.PLAYING) {
-        console.log("O vídeo começou a tocar");
-      } else if (event.data === YT.PlayerState.PAUSED) {
-        console.log("O vídeo foi pausado em: ", player.getCurrentTime());
-      } else if (event.data === YT.PlayerState.ENDED) {
-        console.log("O vídeo terminou");
-      }
-    }
-
-    // Carrega a API do YouTube IFrame
+    // Carrega a API do YouTube
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Alterna entre Play e Pause
+    function togglePlayPause() {
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+    }
+
+    // Detecta o estado do player para atualizar o botão
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        isPlaying = true;
+      } else {
+        isPlaying = false;
+      }
+    }
   </script>
 </body>
 </html>
