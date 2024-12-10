@@ -1,110 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vídeo com Controle Transparente</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #000;
-    }
-    .video-container {
-      position: relative;
-      width: 640px;
-      height: 360px;
-      background: black;
-    }
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* Bloqueia interações diretas com o player */
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3); /* Transparência preta */
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      color: white;
-      font-size: 18px;
-    }
-    .overlay.hidden {
-      background: transparent;
-      pointer-events: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #video-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+        }
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="video-container">
-    <iframe 
-      id="youtube-video" 
-      src="https://www.youtube.com/embed/jpThCV6qak8?rel=0&modestbranding=1&controls=0&showinfo=0&disablekb=1&fs=0&enablejsapi=1" 
-      frameborder="0" 
-      allow="autoplay; encrypted-media" 
-      allowfullscreen>
-    </iframe>
-    <div class="overlay" id="overlay" onclick="togglePlayPause()">Clique para Reproduzir</div>
-  </div>
+    <div id="video-container">
+        <iframe id="video" src="https://www.youtube.com/embed/jpThCV6qak8?controls=0&showinfo=0&rel=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div id="overlay">Clique para Reproduzir</div>
+    </div>
 
-  <script>
-    let player;
-    let isPlaying = false;
+    <script>
+        let player;
+        const overlay = document.getElementById('overlay');
 
-    // Função para inicializar o player YouTube
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('youtube-video', {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange,
-        },
-      });
-    }
+        // Função que é chamada quando a API do YouTube é carregada
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('video', {
+                events: {
+                    'onStateChange': onPlayerStateChange,
+                }
+            });
+        }
 
-    function onPlayerReady(event) {
-      console.log("Player pronto!");
-    }
+        // Função para manipular o estado de pausa/reprodução do vídeo
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PAUSED) {
+                overlay.style.opacity = 1;  // Mostrar overlay quando o vídeo está pausado
+            } else if (event.data === YT.PlayerState.PLAYING) {
+                overlay.style.opacity = 0;  // Ocultar overlay quando o vídeo está sendo reproduzido
+            }
+        }
 
-    function togglePlayPause() {
-      const overlay = document.getElementById('overlay');
-      if (isPlaying) {
-        player.pauseVideo(); // Pausa o vídeo
-      } else {
-        player.playVideo(); // Reproduz o vídeo
-      }
-    }
+        // Função para alternar entre play e pause ao clicar no overlay
+        overlay.addEventListener('click', function() {
+            const state = player.getPlayerState();  // Verifica o estado atual do player
+            if (state === YT.PlayerState.PLAYING) {
+                player.pauseVideo();  // Pausa o vídeo se estiver tocando
+            } else {
+                player.playVideo();  // Reproduz o vídeo se estiver pausado
+            }
+        });
 
-    function onPlayerStateChange(event) {
-      const overlay = document.getElementById('overlay');
-      if (event.data == YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        overlay.classList.add('hidden'); // Oculta overlay quando o vídeo começa a tocar
-      } else if (event.data == YT.PlayerState.PAUSED) {
-        isPlaying = false;
-        overlay.classList.remove('hidden'); // Exibe overlay quando o vídeo está pausado
-        overlay.textContent = 'Clique para Reproduzir'; // Exibe o texto
-      }
-    }
-
-    // Carregar a API do YouTube
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  </script>
+        // Carregar a API do YouTube
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
 </body>
 </html>
