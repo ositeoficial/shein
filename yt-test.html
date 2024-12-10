@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            background-color: #000;
+            background-color: #fff; /* Fundo branco */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,8 +16,8 @@
         }
         #video-container {
             position: relative;
-            width: 640px; /* Ajuste aqui para a largura que você deseja */
-            height: 360px; /* Ajuste aqui para a altura desejada */
+            width: 640px; /* Largura do vídeo */
+            height: 360px; /* Altura do vídeo */
         }
         #overlay {
             position: absolute;
@@ -40,17 +40,34 @@
             height: 100%;
             border: none;
         }
+        /* Imagens de overlay: vermelho para play, preto para pause */
+        #video-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/640x360/FF0000/FFFFFF?text=Play+Image') center center no-repeat; /* Imagem vermelha */
+            background-size: cover;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+        #video-container.paused::before {
+            background: url('https://via.placeholder.com/640x360/000000/FFFFFF?text=Pause+Image') center center no-repeat; /* Imagem preta */
+        }
     </style>
 </head>
 <body>
     <div id="video-container">
-        <iframe id="video" src="https://www.youtube.com/embed/jpThCV6qak8?controls=0&showinfo=0&rel=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe id="video" src="https://www.youtube.com/embed/rQcR4pJ34DY?controls=0&showinfo=0&rel=0&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <div id="overlay">Clique para Reproduzir</div>
     </div>
 
     <script>
         let player;
         const overlay = document.getElementById('overlay');
+        const videoContainer = document.getElementById('video-container');
 
         // Função que é chamada quando a API do YouTube é carregada
         function onYouTubeIframeAPIReady() {
@@ -65,8 +82,10 @@
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PAUSED) {
                 overlay.style.opacity = 1;  // Mostrar overlay quando o vídeo está pausado
+                videoContainer.classList.add('paused'); // Mostrar a imagem preta (pause)
             } else if (event.data === YT.PlayerState.PLAYING) {
                 overlay.style.opacity = 0;  // Ocultar overlay quando o vídeo está sendo reproduzido
+                videoContainer.classList.remove('paused'); // Remover a imagem preta (pause)
             }
         }
 
