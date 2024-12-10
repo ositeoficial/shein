@@ -94,8 +94,11 @@
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
-      } else {
+        document.getElementById('overlay').classList.add('hidden'); // Oculta overlay ao reproduzir
+      } else if (event.data === YT.PlayerState.PAUSED) {
         isPlaying = false;
+        document.getElementById('overlay').classList.remove('hidden'); // Mostra overlay ao pausar
+        document.getElementById('overlay').textContent = 'Clique para Reproduzir'; // Exibe texto
       }
     }
 
