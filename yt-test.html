@@ -83,24 +83,20 @@
       const overlay = document.getElementById('overlay');
       if (isPlaying) {
         player.pauseVideo(); // Pausa o vídeo
-        overlay.classList.remove('hidden'); // Exibe o overlay novamente
-        overlay.textContent = 'Clique para Reproduzir'; // Texto do overlay
       } else {
         player.playVideo(); // Reproduz o vídeo
-        overlay.classList.add('hidden'); // Esconde o overlay
       }
     }
 
     function onPlayerStateChange(event) {
       const overlay = document.getElementById('overlay');
-
-      if (event.data === YT.PlayerState.PLAYING) {
+      if (event.data == YT.PlayerState.PLAYING) {
         isPlaying = true;
-        overlay.classList.add('hidden'); // Esconde o overlay ao reproduzir
-      } else if (event.data === YT.PlayerState.PAUSED) {
+        overlay.classList.add('hidden'); // Oculta overlay quando o vídeo começa a tocar
+      } else if (event.data == YT.PlayerState.PAUSED) {
         isPlaying = false;
-        overlay.classList.remove('hidden'); // Exibe o overlay ao pausar
-        overlay.textContent = 'Clique para Reproduzir'; // Exibe o texto de play
+        overlay.classList.remove('hidden'); // Exibe overlay quando o vídeo está pausado
+        overlay.textContent = 'Clique para Reproduzir'; // Exibe o texto
       }
     }
 
