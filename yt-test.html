@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vídeo Embutido Limpo</title>
+  <title>Vídeo com Controle Transparente</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,15 +26,26 @@
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* Evita interações no player */
+      pointer-events: none; /* Bloqueia interações diretas com o player */
     }
-    .play-pause {
+    .overlay {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: transparent;
+      background: rgba(0, 0, 0, 0.3); /* Transparência preta */
       z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      color: white;
+      font-size: 18px;
+    }
+    .overlay.hidden {
+      background: transparent;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -47,14 +58,14 @@
       allow="autoplay; encrypted-media" 
       allowfullscreen>
     </iframe>
-    <div class="play-pause" onclick="togglePlayPause()"></div>
+    <div class="overlay" id="overlay" onclick="togglePlayPause()">Clique para Reproduzir</div>
   </div>
 
   <script>
     let player;
     let isPlaying = false;
 
-    // Função chamada pela API do YouTube
+    // Função para inicializar o player YouTube
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('youtube-video', {
         events: {
@@ -69,20 +80,22 @@
     }
 
     function togglePlayPause() {
+      const overlay = document.getElementById('overlay');
       if (isPlaying) {
         player.pauseVideo();
+        overlay.classList.remove('hidden');
+        overlay.textContent = 'Clique para Reproduzir';
       } else {
         player.playVideo();
+        overlay.classList.add('hidden');
       }
     }
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
-        console.log("Vídeo tocando");
       } else {
         isPlaying = false;
-        console.log("Vídeo pausado");
       }
     }
 
