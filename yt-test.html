@@ -82,9 +82,12 @@
     function togglePlayPause() {
       const overlay = document.getElementById('overlay');
       if (isPlaying) {
-        player.pauseVideo();
+        player.pauseVideo(); // Pausa o vídeo
+        overlay.classList.remove('hidden'); // Exibe o overlay novamente
+        overlay.textContent = 'Clique para Reproduzir'; // Texto do overlay
       } else {
-        player.playVideo();
+        player.playVideo(); // Reproduz o vídeo
+        overlay.classList.add('hidden'); // Esconde o overlay
       }
     }
 
@@ -93,11 +96,11 @@
 
       if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
-        overlay.classList.add('hidden'); // Oculta overlay ao reproduzir
+        overlay.classList.add('hidden'); // Esconde o overlay ao reproduzir
       } else if (event.data === YT.PlayerState.PAUSED) {
         isPlaying = false;
-        overlay.classList.remove('hidden'); // Mostra overlay ao pausar
-        overlay.textContent = 'Clique para Reproduzir'; // Exibe texto
+        overlay.classList.remove('hidden'); // Exibe o overlay ao pausar
+        overlay.textContent = 'Clique para Reproduzir'; // Exibe o texto de play
       }
     }
 
