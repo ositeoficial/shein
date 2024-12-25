@@ -541,7 +541,49 @@ function handleQuestion2(answer) {
 													
                                                     
 														
+<style>
+.guide-container {
+    padding: 20px;
+    max-width: 600px;
+}
 
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.circle-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.checked .circle-check {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.checked .circle-check::after {
+    content: "✓";
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+</style>
 
 
 
