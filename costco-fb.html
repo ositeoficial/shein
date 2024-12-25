@@ -355,7 +355,7 @@
                                                 <!--[-->
                                                 <div id="sub-heading-1c6HCEkdKp" class="c-sub-heading c-wrapper">
 												
-                                                <div class="progress-circles">
+                                             <div class="progress-circles">
     <div class="circle active" id="circle1">1</div>
     <div class="progress-line"></div>
     <div class="circle" id="circle2">2</div>
@@ -384,29 +384,33 @@
 
     <div class="question-container" id="claimContainer">
         <h2>Thank you!</h2>
-	    <!-- Adicione o guia aqui -->
-    <div class="guide-container">        
-        <ul class="checklist">
-            <li class="checked">
-                <span class="circle-check"></span>
-                Provide a valid email address
-            </li>            
-            <li class="checked">
-                <span class="circle-check"></span>
-                Complete 2-3 required deals
-            </li>
-            <li class="checked">
-                <span class="circle-check"></span>
-                Claim your Rewards
-            </li>
-        </ul>
-    </div>	    
+        <div class="guide-container">        
+            <ul class="checklist">
+                <li class="checked">
+                    <span class="circle-check"></span>
+                    Provide a valid email address
+                </li>            
+                <li class="checked">
+                    <span class="circle-check"></span>
+                    Complete 2-3 required deals
+                </li>
+                <li class="checked">
+                    <span class="circle-check"></span>
+                    Claim your Rewards
+                </li>
+            </ul>
+        </div>	    
         <p>Click below to claim your reward</p>
         <button class="button" onclick="window.location.href='https://glstrck.com/aff_c?offer_id=285&aff_id=18892';">Claim Now!</button>
     </div>
 </div>
 
 <style>
+/* Adicionando a fonte system-ui ao corpo */
+* {
+    font-family: system-ui, sans-serif;
+}
+
 .progress-circles {
     display: flex;
     justify-content: center;
@@ -481,7 +485,7 @@
     margin: 3px;
     border: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: bold;
     width: 300px;
     border-radius: 35px;
@@ -494,23 +498,19 @@
 
 <script>
 function updateQuestion(currentId, nextId, circleNum) {
-    // Atualiza o círculo atual para completed
     const currentCircle = document.getElementById(`circle${circleNum}`);
     currentCircle.innerHTML = "";
     currentCircle.classList.add("completed");
     
-    // Ativa o próximo círculo
     if (circleNum < 3) {
         const nextCircle = document.getElementById(`circle${circleNum + 1}`);
         nextCircle.classList.add("active");
     }
 
-    // Move a questão atual para a esquerda
     const currentQuestion = document.getElementById(currentId);
     currentQuestion.classList.remove("active");
     currentQuestion.classList.add("left");
 
-    // Traz a próxima questão da direita
     setTimeout(() => {
         const nextQuestion = document.getElementById(nextId);
         nextQuestion.classList.add("active");
@@ -530,24 +530,22 @@ function handleQuestion2(answer) {
 }
 </script>
                                                    
-                                                   
-													
-                                                    
-														
 <style>
 .guide-container {
     padding: 20px;
     max-width: 600px;
-  margin-top: -20px;
- max-width: 300px;  /* Reduz a largura máxima */
-    margin-left: auto;  /* Centraliza o container */
-    margin-right: auto; /* Centraliza o container */
+    margin-top: -20px;
+    margin-bottom: -20px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .checklist {
     list-style: none;
     padding: 0;
     margin: 0;
-   text-align: left;  /* Mantém o texto alinhado à esquerda */
+    text-align: left;
 }
 
 .checklist li {
@@ -581,6 +579,7 @@ function handleQuestion2(answer) {
     font-size: 14px;
 }
 </style>
+
 
 
 
