@@ -384,26 +384,73 @@
 
     <div class="question-container" id="claimContainer">
         <h2>Thank you!</h2>
-        <div class="guide-container">        
-            <ul class="checklist">
-		 <li class="checked">
-                    <span class="circle-check"></span>
-                    Click below to continue
-                </li>  
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Provide a valid email address
-                </li>            
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Complete 2-3 required deals
-                </li>
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Claim your Rewards
-                </li>
-            </ul>
-        </div>	           
+       <div class="guide-container">
+    <ul class="checklist">
+        <li class="checked">
+            <span class="circle-check">1</span>
+            Click below to continue
+        </li>
+        <li class="checked">
+            <span class="circle-check">2</span>
+            Provide a valid email address
+        </li>
+        <li class="checked">
+            <span class="circle-check">3</span>
+            Complete 2-3 required deals
+        </li>
+        <li class="checked">
+            <span class="circle-check">4</span>
+            Claim your Rewards
+        </li>
+    </ul>
+</div>    
+
+<style>
+.guide-container {
+    padding: 20px;
+    max-width: 600px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.circle-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.checked .circle-check {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+</style>
+         
         <button class="button" onclick="window.location.href='https://glstrck.com/aff_c?offer_id=285&aff_id=18892';">CONTINUE!</button>
     </div>
 </div>
@@ -533,56 +580,6 @@ function handleQuestion2(answer) {
 }
 </script>
                                                    
-<style>
-.guide-container {
-    padding: 20px;
-    max-width: 600px;
-    margin-top: -10px;
-    margin-bottom: -20px;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.checklist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-
-.checklist li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.circle-check {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    margin-right: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.checked .circle-check {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.checked .circle-check::after {
-    content: "✓";
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-}
-</style>
-
 
 
 
