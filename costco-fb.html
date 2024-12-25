@@ -383,7 +383,7 @@
     </div>
 
     <div class="question-container" id="claimContainer">
-        <h2>Thank you!</h2>
+        <h1>Thank you!</h1>
 	    <!-- Adicione o guia aqui -->
     <div class="guide-container">
         <h2>Quick Start Guide:</h2>
@@ -541,12 +541,16 @@ function handleQuestion2(answer) {
 .guide-container {
     padding: 20px;
     max-width: 600px;
-}
+  margin-top: -20px;
+ max-width: 300px;  /* Reduz a largura máxima */
+    margin-left: auto;  /* Centraliza o container */
+    margin-right: auto; /* Centraliza o container */
 
 .checklist {
     list-style: none;
     padding: 0;
     margin: 0;
+   text-align: left;  /* Mantém o texto alinhado à esquerda */
 }
 
 .checklist li {
