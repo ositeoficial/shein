@@ -384,21 +384,73 @@
 
     <div class="question-container" id="claimContainer">
         <h2>Thank you!</h2>
-        <div class="guide-container">        
-            <ul class="checklist">
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Provide a valid email address
-                </li>            
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Complete 2-3 required deals
-                </li>
-                <li class="checked">
-                    <span class="circle-check"></span>
-                    Claim your Rewards
-                </li>
-            </ul>
+        <style>
+    /* Estilo geral da página */
+    body {
+      font-family: system-ui, sans-serif; /* Fonte system-ui */
+      font-size: 18px;
+      text-align: center;
+    }
+
+    ol {
+      text-align: center;
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      list-style-position: inside;
+    }
+
+    /* Remover os números padrão da lista */
+    ol li {
+      position: relative;
+      margin-bottom: 20px; /* Espaço entre as linhas */
+    }
+
+    /* Círculo com o número */
+    ol li::before {
+      content: attr(data-number);
+      position: absolute;
+      top: -12px;  /* Ajuste de posição para o círculo */
+      left: -40px; /* Ajuste de posição para o círculo */
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* Estilo do texto dentro da lista */
+    ol li strong {
+      font-family: system-ui, sans-serif; /* Fonte system-ui para o texto */
+      color: #333;
+    }
+
+    /* Estilo dos números dentro do círculo */
+    ol li::marker {
+      color: #0056b3;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <ol>
+    <li data-number="1"><strong>Click below to continue</strong></li>
+    <br>
+    <li data-number="2"><strong>Provide a valid email address</strong></li>
+    <br>
+    <li data-number="3"><strong>Complete 2-3 required deals</strong></li>
+    <br>
+    <li data-number="4"><strong>Claim your reward!</strong></li>
+  </ol>
+
+
+
+	
         </div>	    
         <p>Click below to continue</p>
         <button class="button" onclick="window.location.href='https://glstrck.com/aff_c?offer_id=285&aff_id=18892';">CONTINUE!</button>
@@ -530,55 +582,7 @@ function handleQuestion2(answer) {
 }
 </script>
                                                    
-<style>
-.guide-container {
-    padding: 20px;
-    max-width: 600px;
-    margin-top: -20px;
-    margin-bottom: -20px;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.checklist {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-
-.checklist li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.circle-check {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    margin-right: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.checked .circle-check {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.checked .circle-check::after {
-    content: "✓";
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-}
-</style>
 
 
 
