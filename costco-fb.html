@@ -355,9 +355,11 @@
                                                 <!--[-->
                                                 <div id="sub-heading-1c6HCEkdKp" class="c-sub-heading c-wrapper">
 												
-                                                 <div class="progress-circles">
+                                                <div class="progress-circles">
     <div class="circle active" id="circle1">1</div>
+    <div class="progress-line"></div>
     <div class="circle" id="circle2">2</div>
+    <div class="progress-line"></div>
     <div class="circle" id="circle3">3</div>
 </div>
 
@@ -391,8 +393,15 @@
 .progress-circles {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 30px;
+}
+
+.progress-line {
+    height: 2px;
+    width: 50px;
+    background-color: #ccc;
 }
 
 .circle {
@@ -405,6 +414,7 @@
     justify-content: center;
     font-weight: bold;
     border: 2px solid #ccc;
+    flex-shrink: 0;
 }
 
 .circle.active {
@@ -499,7 +509,7 @@ function handleQuestion1(answer) {
 function handleQuestion2(answer) {
     updateQuestion("question2", "claimContainer", 3);
 }
-</script> 
+</script>
                                                    
                                                    
 													
