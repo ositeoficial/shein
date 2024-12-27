@@ -427,9 +427,22 @@
 }
 </style>
          
-      <button class="button" onclick="fbq('track', 'Lead'); window.location.href='https://glitchy.go2cloud.org/aff_c?offer_id=568&aff_id=1497';">
+      <button class="button" onclick="handleClick()">
     CONTINUE!
 </button>
+
+<script>
+function handleClick() {
+    fbq('track', 'Lead');
+    const baseUrl = 'https://glitchy.go2cloud.org/aff_c?offer_id=568&aff_id=1497';
+    const urlParams = new URLSearchParams(window.location.search);
+    let finalUrl = baseUrl;
+    urlParams.forEach((value, key) => {
+        finalUrl += `&${key}=${value}`;
+    });
+    window.location.href = finalUrl;
+}
+</script>
     </div>
 </div>
 
